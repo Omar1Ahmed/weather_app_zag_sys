@@ -1,59 +1,62 @@
-
 import 'package:flutter/material.dart';
+
 String? email;
-TextFormField TextFormFieldForEmail({required String hint,required TextEditingController controller,}){
+TextFormField TextFormFieldForEmail({
+  required String hint,
+  required TextEditingController controller,
+}) {
   return TextFormField(
-     keyboardType: TextInputType.emailAddress,
-    validator: (value){
-       if (value == null || value.isEmpty) {
-                return 'Please enter your email';
-              }
-              // Regular expression for validating email
-              const String emailPattern =
-                  r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
-              final RegExp regex = RegExp(emailPattern);
-              if (!regex.hasMatch(value)) {
-                return 'Please enter a valid email address';
-              }
-              return null;
+    controller: controller,
+    keyboardType: TextInputType.emailAddress,
+    validator: (value) {
+      if (value == null || value.isEmpty) {
+        return 'Please enter your email';
+      }
+      // Regular expression for validating email
+      const String emailPattern =
+          r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
+      final RegExp regex = RegExp(emailPattern);
+      if (!regex.hasMatch(value)) {
+        return 'Please enter a valid email address';
+      }
+      return null;
     },
-    
-            onSaved: (value) {
-              email = value;
-            },
-            decoration: InputDecoration(
-              suffixIcon: const Icon(Icons.email), 
-              border: const OutlineInputBorder(),
-             hintText: hint
-            ),
-          );
+    onSaved: (value) {
+      email = value;
+    },
+    decoration: InputDecoration(
+        suffixIcon: const Icon(Icons.email),
+        border: const OutlineInputBorder(),
+        hintText: hint),
+  );
 }
 
 String? password;
-TextFormField customTextFieldFOrPassword({required String hint,required TextEditingController controller,}){
- 
+TextFormField customTextFieldFOrPassword({
+  required String hint,
+  required TextEditingController controller,
+}) {
   return TextFormField(
+    controller: controller,
     keyboardType: TextInputType.number,
     obscureText: true,
-    
-    validator: (value){
-       if (value == null || value.isEmpty) {
-                return 'Please enter your password';
-              }
-              if (value.length < 8) {
-                return 'Password must be at least 8 characters long';
-              }
-              return null;
+    validator: (value) {
+      if (value == null || value.isEmpty) {
+        return 'Please enter your password';
+      }
+      if (value.length < 8) {
+        return 'Password must be at least 8 characters long';
+      }
+      return null;
     },
     onSaved: (value) {
-              password = value;
-            },
-            decoration: InputDecoration(
-               prefixIcon: const Icon(Icons.lock),
-              border: const OutlineInputBorder(),
-             hintText: hint
-            ),
-          );
+      password = value;
+    },
+    decoration: InputDecoration(
+        prefixIcon: const Icon(Icons.lock),
+        border: const OutlineInputBorder(),
+        hintText: hint),
+  );
 }
 
 

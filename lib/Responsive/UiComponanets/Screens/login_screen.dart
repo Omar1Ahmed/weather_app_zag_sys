@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app_zag_sys/Responsive/UiComponanets/Screens/sign_up_screen.dart';
@@ -71,15 +73,29 @@ class LoginScreen extends StatelessWidget {
                     child: customButtonLogin(
                         text: "LOGIN",
                         color: const Color.fromARGB(255, 169, 157, 157),
-                        onClick: () {
+                        onClick: () async {
                           if (formKey.currentState!.validate()) {
-                            if (kDebugMode) {
-                              print(emailController.text);
-                            }
-                            if (kDebugMode) {
-                              print(passwordController.text);
+                            try {
+                              final credential = await FirebaseAuth.instance
+                                  .signInWithEmailAndPassword(
+                                email: emailController.text,
+                                password: passwordController.text,
+                              );
+                              Navigator.pushNamed(context, "/homeScreen");
+                            } on FirebaseAuthException catch (e) {
+                              print('There is an error. $e');
+                            } catch (e) {
+                              print(e);
                             }
                           }
+                          // if (formKey.currentState!.validate()) {
+                          //   if (kDebugMode) {
+                          //     print(emailController.text);
+                          //   }
+                          //   if (kDebugMode) {
+                          //     print(passwordController.text);
+                          //   }
+                          // }
                           // Navigator.push(context, MaterialPageRoute(builder: (context){
                           //   return const LoginScreen();
                           // }));

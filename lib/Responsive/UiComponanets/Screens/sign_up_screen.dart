@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app_zag_sys/Responsive/UiComponanets/Screens/login_screen.dart';
 import 'package:weather_app_zag_sys/Responsive/UiComponanets/custom-text-form_field.dart';
@@ -90,15 +91,21 @@ class RegisterScreen extends StatelessWidget {
                         text: "Register",
                         color: const Color.fromARGB(255, 164, 145, 145),
                         //AppColors.accentColor,
-                        onClick: () {
+                        onClick: () async {
                           if (formKey.currentState!.validate()) {
-                            print(emailController.text);
-                            print(passwordController.text);
-
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return const LoginScreen();
-                            }));
+                            try {
+                              final credential = await FirebaseAuth.instance
+                                  .createUserWithEmailAndPassword(
+                                email: emailController.text,
+                                password: passwordController.text,
+                              );
+                              Navigator.pushReplacementNamed(
+                                  context, "/LoginScreen");
+                            } on FirebaseAuthException catch (e) {
+                              print('There is an error. $e');
+                            } catch (e) {
+                              print(e);
+                            }
                           }
                           // Navigator.push(context, MaterialPageRoute(builder: (context){
                           //   return const LoginScreen();
