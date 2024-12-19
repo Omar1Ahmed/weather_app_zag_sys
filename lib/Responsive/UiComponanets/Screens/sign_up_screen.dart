@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:weather_app_zag_sys/Responsive/UiComponanets/Screens/login_screen.dart';
 import 'package:weather_app_zag_sys/Responsive/UiComponanets/custom-text-form_field.dart';
@@ -13,18 +11,19 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     TextEditingController passwordController =TextEditingController();
-    TextEditingController emailController =TextEditingController();
-    var formKey =GlobalKey<FormState>();
+    TextEditingController passwordController = TextEditingController();
+    TextEditingController emailController = TextEditingController();
+    var formKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(
           onTap: () {
             Navigator.pop(context);
           },
-          child: const Icon(Icons.arrow_back_ios_new_outlined,
-             // color: AppColors.secondaryColor
-              ),
+          child: const Icon(
+            Icons.arrow_back_ios_new_outlined,
+            // color: AppColors.secondaryColor
+          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -37,7 +36,9 @@ class RegisterScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomText(
-                    text: "Register", fontWeight: FontWeight.w700, fontSize: 32),
+                    text: "Register",
+                    fontWeight: FontWeight.w700,
+                    fontSize: 32),
                 const SizedBox(
                   height: 30,
                 ),
@@ -46,25 +47,34 @@ class RegisterScreen extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                TextFormFieldForEmail(hint: "Example:user@gmail.com", controller: emailController),
+                TextFormFieldForEmail(
+                    hint: "Example:user@gmail.com",
+                    controller: emailController),
                 const SizedBox(
                   height: 20,
                 ),
                 CustomText(
-                    text: "Password", fontWeight: FontWeight.w400, fontSize: 16),
+                    text: "Password",
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16),
                 const SizedBox(
                   height: 10,
                 ),
-               customTextFieldFOrPassword(hint: " your password", controller: passwordController),
+                customTextFieldFOrPassword(
+                    hint: " your password", controller: passwordController),
                 const SizedBox(
                   height: 10,
                 ),
                 CustomText(
-                    text: "Confirm Password", fontWeight: FontWeight.w400, fontSize: 16),
+                    text: "Confirm Password",
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16),
                 const SizedBox(
                   height: 10,
                 ),
-                customTextFieldFOrPassword(hint: "confirm your password", controller: passwordController),
+                customTextFieldFOrPassword(
+                    hint: "confirm your password",
+                    controller: passwordController),
                 const SizedBox(
                   height: 50,
                 ),
@@ -78,18 +88,18 @@ class RegisterScreen extends StatelessWidget {
                     width: 500,
                     child: customButtonLogin(
                         text: "Register",
-                        color:const Color.fromARGB(255, 164, 145, 145) ,
+                        color: const Color.fromARGB(255, 164, 145, 145),
                         //AppColors.accentColor,
                         onClick: () {
-                           if(formKey.currentState!.validate()){
-         print(emailController.text);
-          print(passwordController.text);
+                          if (formKey.currentState!.validate()) {
+                            print(emailController.text);
+                            print(passwordController.text);
 
-          Navigator.push(context, MaterialPageRoute(builder: (context){
-                            return const LoginScreen();
-                          }));
-
-                        }
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return const LoginScreen();
+                            }));
+                          }
                           // Navigator.push(context, MaterialPageRoute(builder: (context){
                           //   return const LoginScreen();
                           // }));
@@ -111,11 +121,17 @@ class RegisterScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-               elevatedButtonBody(child: insideButton(text: "Register With Google", asset: "assets/images/google.png")),
-              const SizedBox(
-                height: 20,
-              ),
-              elevatedButtonBody(child: insideButton(text: "Register With Appe", asset: "assets/images/apple.png")),
+                elevatedButtonBody(
+                    child: insideButton(
+                        text: "Register With Google",
+                        asset: "assets/images/google.png")),
+                const SizedBox(
+                  height: 20,
+                ),
+                elevatedButtonBody(
+                    child: insideButton(
+                        text: "Register With Appe",
+                        asset: "assets/images/apple.png")),
                 const SizedBox(
                   height: 10,
                 ),
