@@ -2,12 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:weather_app_zag_sys/Responsive/UiComponanets/Screens/signin_screen.dart';
-import 'package:weather_app_zag_sys/Responsive/UiComponanets/custom-text-form_field.dart';
-import 'package:weather_app_zag_sys/Responsive/UiComponanets/custom_button_login.dart';
-import 'package:weather_app_zag_sys/Responsive/UiComponanets/custom_text.dart';
-import 'package:weather_app_zag_sys/Responsive/UiComponanets/inside_button.dart';
-import 'package:weather_app_zag_sys/Responsive/UiComponanets/reuse_body_of_button.dart';
+import 'package:weather_app_zag_sys/Responsive/UiComponanets/Screens/sign_up_screen.dart';
+
+import '../../ReusableWidgets/custom-text-form_field.dart';
+import '../../ReusableWidgets/custom_button_login.dart';
+import '../../ReusableWidgets/custom_text.dart';
+import '../../ReusableWidgets/inside_button.dart';
+import '../../ReusableWidgets/reuse_body_of_button.dart';
+
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

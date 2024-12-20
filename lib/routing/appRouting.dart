@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app_zag_sys/MVVM/View_Models/HomePage/home_page_cubit.dart';
 import 'package:weather_app_zag_sys/Responsive/UiComponanets/Screens/login_screen.dart';
-import 'package:weather_app_zag_sys/Responsive/UiComponanets/Screens/signin_screen.dart';
+import 'package:weather_app_zag_sys/Responsive/UiComponanets/Screens/splash_screen.dart';
+
 import 'package:weather_app_zag_sys/routing/routs.dart';
 
 import '../MVVM/Views/Screens/HomePage/HomePage_Screen.dart';
+import '../Responsive/UiComponanets/Screens/sign_up_screen.dart';
 
 
 class AppRouts {
