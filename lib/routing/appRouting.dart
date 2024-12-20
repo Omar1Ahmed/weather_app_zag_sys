@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app_zag_sys/MVVM/View_Models/HomePage/home_page_cubit.dart';
+import 'package:weather_app_zag_sys/MVVM/Views/Screens/Splash/Splash_Screen.dart';
 import 'package:weather_app_zag_sys/Responsive/UiComponanets/Screens/login_screen.dart';
-import 'package:weather_app_zag_sys/Responsive/UiComponanets/Screens/splash_screen.dart';
 
 import 'package:weather_app_zag_sys/routing/routs.dart';
 
