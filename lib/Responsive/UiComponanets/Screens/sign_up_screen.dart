@@ -1,30 +1,32 @@
-
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:weather_app_zag_sys/Responsive/ReusableWidgets/custom_button_login.dart';
+import 'package:weather_app_zag_sys/Responsive/ReusableWidgets/reuse_body_of_button.dart';
 import 'package:weather_app_zag_sys/Responsive/UiComponanets/Screens/login_screen.dart';
-import 'package:weather_app_zag_sys/Responsive/UiComponanets/custom-text-form_field.dart';
-import 'package:weather_app_zag_sys/Responsive/UiComponanets/custom_button_login.dart';
-import 'package:weather_app_zag_sys/Responsive/UiComponanets/custom_text.dart';
-import 'package:weather_app_zag_sys/Responsive/UiComponanets/inside_button.dart';
-import 'package:weather_app_zag_sys/Responsive/UiComponanets/reuse_body_of_button.dart';
+
+
+import '../../ReusableWidgets/custom-text-form_field.dart';
+import '../../ReusableWidgets/custom_text.dart';
+import '../../ReusableWidgets/inside_button.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-     TextEditingController passwordController =TextEditingController();
-    TextEditingController emailController =TextEditingController();
-    var formKey =GlobalKey<FormState>();
+    TextEditingController passwordController = TextEditingController();
+    TextEditingController emailController = TextEditingController();
+    var formKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(
           onTap: () {
             Navigator.pop(context);
           },
-          child: const Icon(Icons.arrow_back_ios_new_outlined,
-             // color: AppColors.secondaryColor
-              ),
+          child: const Icon(
+            Icons.arrow_back_ios_new_outlined,
+            // color: AppColors.secondaryColor
+          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -37,7 +39,9 @@ class RegisterScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomText(
-                    text: "Register", fontWeight: FontWeight.w700, fontSize: 32),
+                    text: "Register",
+                    fontWeight: FontWeight.w700,
+                    fontSize: 32),
                 const SizedBox(
                   height: 30,
                 ),
@@ -46,25 +50,34 @@ class RegisterScreen extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                TextFormFieldForEmail(hint: "Example:user@gmail.com", controller: emailController),
+                TextFormFieldForEmail(
+                    hint: "Example:user@gmail.com",
+                    controller: emailController),
                 const SizedBox(
                   height: 20,
                 ),
                 CustomText(
-                    text: "Password", fontWeight: FontWeight.w400, fontSize: 16),
+                    text: "Password",
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16),
                 const SizedBox(
                   height: 10,
                 ),
-               customTextFieldFOrPassword(hint: " your password", controller: passwordController),
+                customTextFieldFOrPassword(
+                    hint: " your password", controller: passwordController),
                 const SizedBox(
                   height: 10,
                 ),
                 CustomText(
-                    text: "Confirm Password", fontWeight: FontWeight.w400, fontSize: 16),
+                    text: "Confirm Password",
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16),
                 const SizedBox(
                   height: 10,
                 ),
-                customTextFieldFOrPassword(hint: "confirm your password", controller: passwordController),
+                customTextFieldFOrPassword(
+                    hint: "confirm your password",
+                    controller: passwordController),
                 const SizedBox(
                   height: 50,
                 ),
@@ -78,18 +91,24 @@ class RegisterScreen extends StatelessWidget {
                     width: 500,
                     child: customButtonLogin(
                         text: "Register",
-                        color:const Color.fromARGB(255, 164, 145, 145) ,
+                        color: const Color.fromARGB(255, 164, 145, 145),
                         //AppColors.accentColor,
-                        onClick: () {
-                           if(formKey.currentState!.validate()){
-         print(emailController.text);
-          print(passwordController.text);
-
-          Navigator.push(context, MaterialPageRoute(builder: (context){
-                            return const LoginScreen();
-                          }));
-
-                        }
+                        onClick: () async {
+                          if (formKey.currentState!.validate()) {
+                            try {
+                              final credential = await FirebaseAuth.instance
+                                  .createUserWithEmailAndPassword(
+                                email: emailController.text,
+                                password: passwordController.text,
+                              );
+                              Navigator.pushReplacementNamed(
+                                  context, "/LoginScreen");
+                            } on FirebaseAuthException catch (e) {
+                              print('There is an error. $e');
+                            } catch (e) {
+                              print(e);
+                            }
+                          }
                           // Navigator.push(context, MaterialPageRoute(builder: (context){
                           //   return const LoginScreen();
                           // }));
@@ -111,11 +130,17 @@ class RegisterScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-               elevatedButtonBody(child: insideButton(text: "Register With Google", asset: "assets/images/google.png")),
-              const SizedBox(
-                height: 20,
-              ),
-              elevatedButtonBody(child: insideButton(text: "Register With Appe", asset: "assets/images/apple.png")),
+                elevatedButtonBody(
+                    child: insideButton(
+                        text: "Register With Google",
+                        asset: "assets/images/google.png")),
+                const SizedBox(
+                  height: 20,
+                ),
+                elevatedButtonBody(
+                    child: insideButton(
+                        text: "Register With Appe",
+                        asset: "assets/images/apple.png")),
                 const SizedBox(
                   height: 10,
                 ),
