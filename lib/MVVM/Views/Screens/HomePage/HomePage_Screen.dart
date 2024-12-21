@@ -2,7 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../theming/colors.dart';
 import '../../../View_Models/HomePage/home_page_cubit.dart';
+import '../../ReusableWidgets/weather_card.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -29,49 +31,73 @@ class _MyHomePageState extends State<MyHomePage> {
     // },
         builder: (context, state) {
       return Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
-          // TRY THIS: Try changing the color here to a specific color (to
-          // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-          // change color while the other colors stay the same.
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
-          title: Text(widget.title),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          title: const Text(
+            'Hello AbdQader',
+            style: TextStyle(color: Colors.black, fontSize: 20),
+          ),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.dark_mode, color: Colors.black),
+            ),
+          ],
         ),
-        body: Center(
-          // Center is a layout widget. It takes a single child and positions it
-          // in the middle of the parent.
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
-            // Column is also a layout widget. It takes a list of children and
-            // arranges them vertically. By default, it sizes itself to fit its
-            // children horizontally, and tries to be as tall as its parent.
-            //
-            // Column has various properties to control how it sizes itself and
-            // how it positions its children. Here we use mainAxisAlignment to
-            // center the children vertically; the main axis here is the vertical
-            // axis because Columns are vertical (the cross axis would be
-            // horizontal).
-            //
-            // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-            // action in the IDE, or press "p" in the console), to see the
-            // wireframe for each widget.
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 17),
               const Text(
-                'You have pushed the button this many times:',
+                'Discover the weather',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
-              Text(
-                '${context.read<HomePageCubit>().counter}',
-                style: Theme.of(context).textTheme.headlineMedium,
+              const SizedBox(height: 20),
+              WeatherCard(
+                location: 'Palestine',
+                city: 'Gaza',
+                condition: 'Sunny',
+                temperature: '27 °C',
+                backgroundColor: ColorsManager.cardBackgrounColor,
+              ),
+              const SizedBox(height: 30),
+              const Text(
+                'Around the world',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 20),
+              Column(
+                children: [
+                  WeatherCard(
+                    location: 'United Kingdom',
+                    city: 'London',
+                    condition: 'Partly cloudy',
+                    temperature: '18 °C',
+                    backgroundColor: ColorsManager.cardBackgrounColor,
+                  ),
+                  WeatherCard(
+                    location: 'Egypt',
+                    city: 'Cairo',
+                    condition: 'Partly cloudy',
+                    temperature: '30 °C',
+                    backgroundColor: ColorsManager.cardBackgrounColor,
+                  ),
+                  WeatherCard(
+                    location: 'Mexico',
+                    city: 'Alaska',
+                    condition: 'Sunny',
+                    temperature: '22 °C',
+                    backgroundColor: ColorsManager.cardBackgrounColor,
+                  ),
+                ],
               ),
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: ()=> context.read<HomePageCubit>().incrementCounter(),
-          tooltip: 'Increment',
-          child: const Icon(Icons.add),
-        ), // This trailing comma makes auto-formatting nicer for build methods.
       );
     });
   }

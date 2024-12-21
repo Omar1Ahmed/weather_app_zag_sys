@@ -3,6 +3,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:weather_app_zag_sys/Responsive/UiComponanets/Screens/home_page.dart';
+import 'package:weather_app_zag_sys/helpers/extantions.dart';
+import 'package:weather_app_zag_sys/routing/appRouting.dart';
+
+import '../../../routing/routs.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -32,10 +36,8 @@ class _SplashScreenState extends State<SplashScreen>
     );
 
     Timer(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const HomeScreen()),
-      );
+      context.pushNamed(Routes.loginScreen);
+
     });
   }
 

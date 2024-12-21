@@ -1,8 +1,13 @@
+
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:weather_app_zag_sys/Responsive/UiComponanets/Screens/home_page.dart';
 import 'package:weather_app_zag_sys/helpers/extantions.dart';
+import 'package:weather_app_zag_sys/routing/appRouting.dart';
+
 import '../../../../routing/routs.dart';
-import '../../../../theming/colors.dart';
+
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -11,35 +16,66 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
   @override
   void initState() {
     super.initState();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-    Future.delayed(const Duration(seconds: 3), () {
-      // ignore: use_build_context_synchronously
-      context.pushReplacementNamed(Routes.homePage);
+      print('init Screen');
+    _controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    )..forward();
+
+    _animation = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOut,
+    );
+
+    Timer(const Duration(seconds: 3), () {
+      context.pushNamed(Routes.loginScreen);
+
     });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(colors: [
-            ColorsManager.primaryColor,
-            ColorsManager.secondaryColor,
-          ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+      backgroundColor: Colors.white,
+      body: Center(
+        child: FadeTransition(
+          opacity: _animation,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/images/splash_image.JPG',
+                height: 180,
+                width: 180,
+              ),
+              const SizedBox(height: 30),
+              const Text(
+                'Discover the Weather',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blueAccent,
+                ),
+              ),
+            ],
+          ),
         ),
-        child: const Center(
-            child: Text(
-          "om.time",
-          style: TextStyle(color: Colors.white, fontSize: 30),
-        )),
       ),
     );
   }
 }
+

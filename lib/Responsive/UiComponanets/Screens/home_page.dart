@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app_zag_sys/Responsive/ReusableWidgets/weather_card.dart';
 import 'package:weather_app_zag_sys/theming/colors.dart';
+
+import '../../../MVVM/Views/ReusableWidgets/weather_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app_zag_sys/Responsive/ReusableWidgets/custom_text.dart';
+
+import 'custom_text.dart';
 
 
 
